@@ -32,9 +32,9 @@ class AlarmClock {
 
         this.intervalId = setInterval (() => {
             this.alarmCollection.forEach((alarm) => {
-                if(this.alarmCollection.alarm.time === getCurrentFormattedTime() && this.alarmCollection.alarm.canCall === true){
-                    this.alarmCollection.alarm.canCall = false;
-                    this.alarmCollection.alarm.callback();
+                if(alarm.time === this.getCurrentFormattedTime() && alarm.canCall === true){
+                    alarm.canCall = false;
+                    alarm.callback();
                 }
             })
         }, 1000);
@@ -47,12 +47,12 @@ class AlarmClock {
 
     resetAllCalls(){
         this.alarmCollection.forEach((alarm) => {
-            this.alarmCollection.alarm.canCall = true;
+            alarm.canCall = true;
         });
     }
 
     clearAlarms(){
-        stop();
+        this.stop();
         this.alarmCollection = [];
     }
 
